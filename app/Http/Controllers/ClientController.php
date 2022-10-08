@@ -20,16 +20,22 @@ class ClientController extends Controller
         return response()->json($client);
     }
 
+    public function findById(int $id){
+        $client = $this->clientService->findById($id);
+        return response()->json($client);
+    }
+
     public function save(Request $request){
         $client = $this->clientService->save($request->all());
         return response()->json($client);
     }
 
-    public function update(){}
+    public function update(int $id, Request $request){
+        $client = $this->clientService->update($id, $request->all());
+        return response()->json($client);
+    }
 
     public function delete(){}
-
-    public function findById(){}
 
     public function findByPlaca(){}
 }

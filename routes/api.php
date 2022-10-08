@@ -21,7 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/', [ClientController::class, 'findAll'])->name('.findAll');
 Route::post('/cliente', [ClientController::class, 'save'])->name('.save');
-Route::put('/cliente/{id}', [ClientController::class. 'update'])->name('.update');
+Route::put('/cliente/{id}', [ClientController::class, 'update'])->name('.update');
 Route::delete('/cliente/{id}', [ClientController::class, 'delete'])->name('.delete');
 Route::get('/cliente/{id}', [ClientController::class, 'findById'])->name('.findById');
 Route::get('/consulta/final-placa/{number}', [ClientController::class, 'findByPlaca'])->name('.findByPlaca');

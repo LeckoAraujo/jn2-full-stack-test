@@ -20,6 +20,11 @@ class ClientRepository
         return $this->clientModel::all();
     }
 
+    public function findById(int $id)
+    {
+        return $this->clientModel->find($id);
+    }
+
     public function save(array $array){
         $newClient = Client::where('cpf', $array['cpf'])->first();
 
@@ -37,6 +42,16 @@ class ClientRepository
 
             return $newClient->save();
         }
+    }
+
+    public function update(Client $client, array $array){
+
+        $client->name = $array['name'];
+        $client->phone = $array['phone'];
+        $client->cpf = $array['cpf'];
+        $client->placa = $array['placa'];
+
+        return $client->update();
     }
 
 }
