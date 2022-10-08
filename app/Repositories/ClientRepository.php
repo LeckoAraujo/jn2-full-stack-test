@@ -54,4 +54,9 @@ class ClientRepository
         return $client->update();
     }
 
+    public function delete(int $id): bool
+    {
+        return $this->clientModel::destroy($id);
+    }
+
 }

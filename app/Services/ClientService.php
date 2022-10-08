@@ -69,6 +69,17 @@ class ClientService
         }
     }
 
+    public function delete(int $id): bool
+    {
+        $client = $this->findById($id);
+        if (is_array($client)) {
+            return [
+                'message' => "Nenhum registro encontrado para o Id -> " . $id
+            ];
+        }
+        return $this->clientRepository->delete($id);
+    }
+
 
 
 

@@ -35,7 +35,15 @@ class ClientController extends Controller
         return response()->json($client);
     }
 
-    public function delete(){}
+    public function delete(int $id){
+        try {
+            $registroDeletado = $this->clientService->delete($id);
+        } catch (\Exception $exception) {
+            return $exception;
+        }
+
+        return response()->json($registroDeletado);
+    }
 
     public function findByPlaca(){}
 }
