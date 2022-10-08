@@ -5,83 +5,113 @@ namespace App\Services;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-use App\Models\Client;
+use App\Repositories\ClientRepository;
 
 
 class ClientService
 {
+    private $clientRepository;
 
-    public function list(){
-        return Client::all();
+    public function __construct(ClientRepository $repository)
+    {
+        $this->clientRepository = $repository;
     }
 
-    public function create($client){
-        $newClient = Client::where('cpf', $client->cpf)->first();
+    public function findAll(){
+        try {
+            if ($this->clientRepository->findAll() == null) {
+                throw ("Nenhum registro encontrado!");
+            }
+            return $this->clientRepository->findAll();
 
-        $client->name = 'Leandro';
-        $client->phone = '981055665';
-        $client->cpf = '02748988370';
-        $client->placa = 'nxe4949';
-
-        if($newClient !== null){
-
-            $this->edit($newClient->id);
-
-        } else {
-            $newClient = new Client();
-
-            $newClient->name = $client->name;
-            $newClient->phone = $client->phone;
-            $newClient->cpf = $client->cpf;
-            $newClient->placa = $client->placa;
-
-            $newClient->save();
+        } catch (\Exception $exception) {
+            return $exception;
         }
     }
 
-    public function edit($id){
-        $client = Client::where('id', $id)->first();
 
-        if($client !== null){
 
-            $client->save();
 
-        } else {
+
+
+
+    // public function create($client){
+    //     $newClient = Client::where('cpf', $client->cpf)->first();
+
+    //     $client->name = 'Leandro';
+    //     $client->phone = '981055665';
+    //     $client->cpf = '02748988370';
+    //     $client->placa = 'nxe4949';
+
+    //     if($newClient !== null){
+
+    //         $this->edit($newClient->id);
+
+    //     } else {
+    //         $newClient = new Client();
+
+    //         $newClient->name = $client->name;
+    //         $newClient->phone = $client->phone;
+    //         $newClient->cpf = $client->cpf;
+    //         $newClient->placa = $client->placa;
+
+    //         $newClient->save();
+    //     }
+    // }
+
+    // public function edit($id){
+    //     $client = Client::where('id', $id)->first();
+
+    //     if($client !== null){
+
+    //         $client->save();
+
+    //     } else {
             
-        }
-    }
+    //     }
+    // }
 
-    public function delete($id){
-        $client = Client::where('id', $id)->first();
+    // public function delete($id){
+    //     $client = Client::where('id', $id)->first();
 
-        if($client !== null){
-            $client->delete();
+    //     if($client !== null){
+    //         $client->delete();
             
-            return response()->json([
-                'message' => "Cliente excluido com sucesso!"
-            ]);
-        } else {
-            return response()->json([
-                'message' => "Cliente inexistente na base de dados ou excluido anteriormente"
-            ]);
-        }
-    }
+    //         return response()->json([
+    //             'message' => "Cliente excluido com sucesso!"
+    //         ]);
+    //     } else {
+    //         return response()->json([
+    //             'message' => "Cliente inexistente na base de dados ou excluido anteriormente"
+    //         ]);
+    //     }
+    // }
 
-    public function clientConsult($id){
-        $client = Client::where('id', $id)->first();
+    // public function clientConsult($id){
+    //     $client = Client::where('id', $id)->first();
 
-        if($client !== null){
-            return $client;
-        } else {
-            return response()->json([
-                'message' => "Cliente inexistente na base de dados"
-            ]);
-        }
-    }
+    //     if($client !== null){
+    //         return $client;
+    //     } else {
+    //         return response()->json([
+    //             'message' => "Cliente inexistente na base de dados"
+    //         ]);
+    //     }
+    // }
 
-    public function placaConsult($number){
-        return Client::where('placa', 'like', '%'.$number.'%')->get();
-    }
+    // public function placaConsult($number){
+    //     return Client::where('placa', 'like', '%'.$number.'%')->get();
+    // }
+
+
+
+
+
+
+
+
+
+
 
     //     foreach($zipCodes as $zipCode){
 

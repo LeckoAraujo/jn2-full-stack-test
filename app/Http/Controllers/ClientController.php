@@ -15,27 +15,18 @@ class ClientController extends Controller
         $this->clientService = $service;
     }
 
-    public function list(){
-        return $this->clientService->list();
+    public function findAll(){
+        $client = $this->clientService->findAll();
+        return response()->json($client);
     }
 
-    public function create($client){
-        return $this->clientService->create($client);
-    }
+    public function save(){}
 
-    public function edit($id){
-        return $this->clientService->edit($id);
-    }
+    public function update(){}
 
-    public function delete($id){
-        return $this->clientService->delete($id);
-    }
+    public function delete(){}
 
-    public function clientConsult($id){
-        return $this->clientService->clientConsult($id);
-    }
+    public function findById(){}
 
-    public function placaConsult($number){
-        return $this->clientService->placaConsult($number);
-    }
+    public function findByPlaca(){}
 }
