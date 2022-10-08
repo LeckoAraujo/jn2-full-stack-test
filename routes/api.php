@@ -21,7 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/', [ClientController::class, 'list'])->name('.list');
 
-Route::post('/cliente/{client?}', [ClientController::class, 'create'])->name('.create');
+Route::post('/cliente/', [ClientController::class, 'create'])->name('.create');
 
 Route::put('/cliente/{id}', [ClientController::class. 'edit'])->name('.edit');
 
