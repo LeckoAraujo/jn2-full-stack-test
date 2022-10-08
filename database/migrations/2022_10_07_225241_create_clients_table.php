@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 255);
             $table->string('phone', 14);
-            $table->string('cpf', 11);
+            $table->string('cpf', 11)->unique();
             $table->string('placa', 8);
             $table->timestamps();
         });

@@ -16,14 +16,68 @@ class ClientService
     }
 
     public function create($client){
+        $newClient = Client::where('cpf', $client->cpf)->first();
 
+        $client->name = 'Leandro';
+        $client->phone = '981055665';
+        $client->cpf = '02748988370';
+        $client->placa = 'nxe4949';
+
+        if($newClient !== null){
+
+            $this->edit($newClient->id);
+
+        } else {
+            $newClient = new Client();
+
+            $newClient->name = $client->name;
+            $newClient->phone = $client->phone;
+            $newClient->cpf = $client->cpf;
+            $newClient->placa = $client->placa;
+
+            $newClient->save();
+        }
     }
 
-    public function edit($id){}
+    public function edit($id){
+        $client = Client::where('id', $id)->first();
 
-    public function delete($id){}
+        if($client !== null){
 
-    public function clientConsult($id){}
+            $client->save();
+
+        } else {
+            
+        }
+    }
+
+    public function delete($id){
+        $client = Client::where('id', $id)->first();
+
+        if($client !== null){
+            $client->delete();
+            
+            return response()->json([
+                'message' => "Cliente excluido com sucesso!"
+            ]);
+        } else {
+            return response()->json([
+                'message' => "Cliente inexistente na base de dados ou excluido anteriormente"
+            ]);
+        }
+    }
+
+    public function clientConsult($id){
+        $client = Client::where('id', $id)->first();
+
+        if($client !== null){
+            return $client;
+        } else {
+            return response()->json([
+                'message' => "Cliente inexistente na base de dados"
+            ]);
+        }
+    }
 
     public function placaConsult($number){
         return Client::where('placa', 'like', '%'.$number.'%')->get();

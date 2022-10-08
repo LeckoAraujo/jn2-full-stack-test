@@ -17,7 +17,6 @@ class ClientController extends Controller
 
     public function list(){
         return $this->clientService->list();
-        // return 'list';
     }
 
     public function create($client){
