@@ -20,7 +20,10 @@ class ClientController extends Controller
         return response()->json($client);
     }
 
-    public function save(){}
+    public function save(Request $request){
+        $client = $this->clientService->save($request->all());
+        return response()->json($client);
+    }
 
     public function update(){}
 

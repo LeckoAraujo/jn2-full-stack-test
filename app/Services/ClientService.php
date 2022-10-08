@@ -29,6 +29,14 @@ class ClientService
         }
     }
 
+    public function save(array $array){
+        try {
+            return $this->clientRepository->save($array);
+        } catch (\Exception $exception) {
+            return $exception;
+        }
+    }
+
 
 
 
