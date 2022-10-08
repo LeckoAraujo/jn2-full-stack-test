@@ -59,4 +59,7 @@ class ClientRepository
         return $this->clientModel::destroy($id);
     }
 
+    public function findByPlaca(string $number){
+        return $this->clientModel::where('placa', 'like', '%'.$number)->get();
+    }
 }

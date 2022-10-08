@@ -45,5 +45,8 @@ class ClientController extends Controller
         return response()->json($registroDeletado);
     }
 
-    public function findByPlaca(){}
+    public function findByPlaca(string $number){
+        $client = $this->clientService->findByPlaca($number);
+        return response()->json($client);
+    }
 }
