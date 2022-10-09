@@ -29,8 +29,77 @@ GET      | /consulta/final-placa/{numero} | Consulta de todos os clientes cadast
 
 ## Configurando e Instalando o Hambiente
 
+### 1.Baixando o projeto
+
 Abra um terminal no diretório onde o projeto ficará armazenado e execute o comando
 
 ~~~ Git
 git clone https://github.com/LeckoAraujo/jn2-full-stack-test.git
 ~~~
+
+### 2.Atualando dependencias
+
+~~~ Composer
+compose update
+~~~
+
+### 3.Configurando o .env do Laravel
+
+~~~ Artisan
+cp .env.example .env
+~~~
+
+#### 3.1.Configurando conexão com o banco de dados
+
+Informação de configuração da conexão com o banco que devem ser atualizadas no .env
+
+~~~
+DB_CONNECTION=pgsql
+DB_HOST=localhost
+DB_PORT=5432
+DB_DATABASE=jn2_test
+DB_USERNAME=postgres
+DB_PASSWORD=postgres
+~~~
+
+#### 3.2.Definindo uma nova chave no seu arquivo .env
+
+~~~ Artisan
+php artisan key:generate
+~~~
+
+### 4.Levantando o container docker
+
+Com o terminal ainda aberto na raiz do projeto execute o comando para levantar o container
+
+~~~ Docker
+docker compose up
+~~~
+
+### 5.Executando as Migrations
+
+~~~ Artisan
+php artisan migrate
+~~~
+
+### 6.Rodando a aplicação Laravel
+
+~~~ Artisan
+php artisan serve
+~~~
+
+### 7.Documentação da API com Swagger
+
+Com o projeto em execução acesse o link
+
+<a href="http://127.0.0.1:8000/api/documentation" target="_blank">Documentação API Swagger</a>
+
+para ver todos os endpois e testalos
+
+### Testanto a API
+
+Você pode testar o projeto pelo link <a href="http://127.0.0.1:8000/api/documentation" target="_blank">Documentação API Swagger</a> ou utilizando algum software como o <a href="https://insomnia.rest/download" target="_blank">Insomnia</a> ou <a href="https://www.postman.com/downloads/" target="_blank">Postman</a>
+
+## Sobre o Projeto
+
+### Arquitetura
