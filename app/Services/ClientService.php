@@ -30,7 +30,7 @@ class ClientService
             return $this->clientRepository->findAll();
 
         } catch (\Exception $exception) {
-            return $exception;
+            return $this->dto->errorDefault($exception->getMessage());
         }
     }
 
@@ -44,7 +44,7 @@ class ClientService
             return $this->clientRepository->findById($id);
 
         } catch (\Exception $exception) {
-            return $exception;
+            return $this->dto->errorDefault($exception->getMessage());
         }
     }
 
@@ -82,7 +82,7 @@ class ClientService
             return $client;
 
         } catch (\Exception $exception) {
-            return $exception;
+            return $this->dto->errorDefault($exception->getMessage());
         }
     }
 
@@ -107,7 +107,7 @@ class ClientService
             return $this->clientRepository->findByPlaca($number);
 
         } catch (\Exception $exception) {
-            return $exception;
+            return $this->dto->errorDefault($exception->getMessage());
         }
     }
 }
