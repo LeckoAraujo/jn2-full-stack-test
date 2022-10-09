@@ -6,15 +6,18 @@ namespace App\Services;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Repositories\ClientRepository;
+use App\Exceptions\ErrorDefault;
 
 
 class ClientService
 {
     private $clientRepository;
+    private $dto;
 
     public function __construct(ClientRepository $repository)
     {
         $this->clientRepository = $repository;
+        $this->dto = new ErrorDefault;
     }
 
     public function findAll(){
@@ -45,11 +48,25 @@ class ClientService
         }
     }
 
+    public function findByCpf(string $cpf){
+        try {
+            return $this->clientRepository->findByCpf($cpf);
+        } catch (\Exception $exception) {
+            return $this->dto->errorDefault($exception->getMessage());
+        }
+    }
+
     public function save(array $array){
         try {
-            return $this->clientRepository->save($array);
+            if($this->findByCpf($array['cpf']) == null){
+                return $this->clientRepository->save($array);
+            } else {
+                return [
+                    'message' => "Esse CPF já foi cadastrado anteriormente na base de datos"
+                ];
+            }
         } catch (\Exception $exception) {
-            return $exception;
+            return $this->dto->errorDefault($exception->getMessage());
         }
     }
 

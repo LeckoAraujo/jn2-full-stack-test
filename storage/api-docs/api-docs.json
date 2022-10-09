@@ -1,0 +1,261 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "JN2 Full Stack Test",
+        "description": "JN2 Full Stack Test",
+        "contact": {
+            "name": "Leandro Araujo - leandroedsonsa@gmail.com",
+            "email": "leandroedsonsa@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "/api"
+        }
+    ],
+    "paths": {
+        "/buscarTodos": {
+            "get": {
+                "tags": [
+                    "Clientes"
+                ],
+                "summary": "Consulta de dados de todos os cliente.",
+                "description": "Consulta de dados de todos os cliente.",
+                "operationId": "7822ddd530803779556e5473d89eb53f",
+                "responses": {
+                    "200": {
+                        "description": "Retorna todos os clientes"
+                    }
+                }
+            }
+        },
+        "/cliente/{id}": {
+            "get": {
+                "tags": [
+                    "Clientes"
+                ],
+                "summary": "Consulta de dados de um cliente.",
+                "description": "Consulta de dados de um cliente.",
+                "operationId": "findById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do Cliente",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna o cliente do Id informado"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Clientes"
+                ],
+                "summary": "Edição de um cliente já existente.",
+                "description": "Edição de um cliente já existente.",
+                "operationId": "update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do Cliente",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "phone",
+                                    "cpf",
+                                    "placa"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Leandro Araujo"
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "+5598981055665"
+                                    },
+                                    "cpf": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "12345678900"
+                                    },
+                                    "placa": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "NXE4949"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Retorna dados atualizados do cliente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status_code": {
+                                            "type": "integer",
+                                            "example": "200"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Clientes"
+                ],
+                "summary": "Remoção de um cliente existente.",
+                "description": "Remoção de um cliente existente.",
+                "operationId": "delete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do Cliente",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna true para cliente deletado com sucesso"
+                    }
+                }
+            }
+        },
+        "/cliente": {
+            "post": {
+                "tags": [
+                    "Clientes"
+                ],
+                "summary": "Cadastro de novo cliente.",
+                "description": "Cadastro de novo cliente.",
+                "operationId": "save",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "phone",
+                                    "cpf",
+                                    "placa"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Leandro Araujo"
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "+5598981055665"
+                                    },
+                                    "cpf": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "12345678900"
+                                    },
+                                    "placa": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "NXE4949"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Retorna o cliente cadastrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": ""
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/consulta/final-placa/{number}": {
+            "get": {
+                "tags": [
+                    "Clientes"
+                ],
+                "summary": "Consulta de todos os clientes cadastrados na base, onde o último número da placa do carro é igual ao informado.",
+                "description": "Consulta de todos os clientes cadastrados na base, onde o último número da placa do carro é igual ao informado.",
+                "operationId": "findByPlaca",
+                "parameters": [
+                    {
+                        "name": "number",
+                        "in": "path",
+                        "description": "Último número da placa do carro do Cliente",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna dados do cliente pesquisado pelo final da placa"
+                    }
+                }
+            }
+        }
+    }
+}

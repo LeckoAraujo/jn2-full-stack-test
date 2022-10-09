@@ -25,23 +25,21 @@ class ClientRepository
         return $this->clientModel->find($id);
     }
 
+    public function findByCpf(string $cpf){
+        return $this->clientModel::where('cpf', $cpf)->first();
+    }
+
     public function save(array $array){
-        $newClient = Client::where('cpf', $array['cpf'])->first();
+        return $this->clientModel::create($array);
+        // $newClient = Client::where('cpf', $array['cpf'])->first();
 
-        if($newClient !== null){
+        // if($newClient !== null){
 
-            return "Esse CPF já foi cadastrado anteriormente na base de datos";
+        //     return "Esse CPF já foi cadastrado anteriormente na base de datos";
 
-        } else {
-            $newClient = new Client();
-
-            $newClient->name = $array['name'];
-            $newClient->phone = $array['phone'];
-            $newClient->cpf = $array['cpf'];
-            $newClient->placa = $array['placa'];
-
-            return $newClient->save();
-        }
+        // } else {
+        //     return $this->clientModel::create($array);
+        // }
     }
 
     public function update(Client $client, array $array){
