@@ -105,7 +105,3 @@ Com o projeto em execução acesse o link <a href="http://127.0.0.1:8000/api/doc
 ### Testanto a API
 
 Você pode testar o projeto pelo link <a href="http://127.0.0.1:8000/api/documentation" target="_blank">Documentação API Swagger</a> ou utilizando algum software como o <a href="https://insomnia.rest/download" target="_blank">Insomnia</a> ou <a href="https://www.postman.com/downloads/" target="_blank">Postman</a>
-
-## Sobre o Projeto
-
-### Arquitetura
