@@ -27,7 +27,7 @@ GET      | /consulta/final-placa/{numero} | Consulta de todos os clientes cadast
 * Você deve utilizar um framework PHP de sua escolha;
 * Você será avaliado pela lógica e leitura do seu código, seguindo os princípios SOLID e PSR.
 
-## Configurando e Instalando o Hambiente
+## Configurando e Instalando o Ambiente
 
 ### 1.Baixando o projeto
 
@@ -37,7 +37,7 @@ Abra um terminal no diretório onde o projeto ficará armazenado e execute o com
 git clone https://github.com/LeckoAraujo/jn2-full-stack-test.git
 ~~~
 
-### 2.Atualando dependencias
+### 2.Atualizando dependencias
 
 Com o terminal ainda aberto na raiz do projeto execute o comando para atualizar as dependencias do composer
 
